@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&family=REM:ital,wght@1,300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" integrity="sha512-siarrzI1u3pCqFG2LEzi87McrBmq6Tp7juVsdmGY1Dr8Saw+ZBAzDzrGwX3vgxX1NkioYNCFOVC0GpDPss10zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/regular.min.css" integrity="sha512-rOTVxSYNb4+/vo9pLIcNAv9yQVpC8DNcFDWPoc+gTv9SLu5H8W0Dn7QA4ffLHKA0wysdo6C5iqc+2LEO1miAow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/regular.min.js" integrity="sha512-kSAGSlODsZwG7bMv/Hydyvybjk+WOz4oEqQiWYwpCxQ7/7yXMFynr2QrvNc2myZW/7wyi0IF2TXZZWMeg8AGhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/fontawesome.min.js" integrity="sha512-64O4TSvYybbO2u06YzKDmZfLj/Tcr9+oorWhxzE3yDnmBRf7wvDgQweCzUf5pm2xYTgHMMyk5tW8kWU92JENng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+			width: 100%;
+			height: 100vh;
+			font-family: 'Poppins', sans-serif;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+		.container{
+			width: 100%;
+			min-height: 100vh;
+			border-radius: .5rem;
+			padding: 1rem;
+			background: rgba(0, 0, 0, 0.4);
+		}
+		.todo{
+			width: 75%;
+			max-width: 33.75rem;
+			background: #F3FDE8;
+			margin: 50px auto 20px;
+			padding: 40px 30px;
+			border-radius: 10px;
+			box-shadow: 10px 10px 1rem rgba(243, 253, 232, 0.7);
+		}
+		.todo h2{
+			color: #002765;
+			align-items: center;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		.todo .icon{
+			width: 30px;
+			margin-left: 10px;
+		}
+		.row{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-radius: 30px;
+			padding-left: 20px;
+			margin-bottom: 25px;
+
+		}
+		input{
+			flex: 1;
+			border: none;
+			outline: none;
+			padding: 10px;
+			font-size : 1.3rem;
+			margin-right: 1rem;
+			background: #edeef0;
+			border-radius: .2rem;
+		}
+		button{
+			border: none;
+			outline: none;
+			padding: .5rem .9rem;
+			background: #252B48;
+			color: #fff;
+			font-size: 1.3rem;
+			cursor: pointer;
+			border-radius: 2rem;
+			transition: .3s ease all;
+		}
+		button:active{
+			transform: scale(.7);
+		}
+		ul li{
+			list-style: none;
+			font-size: 1.5rem;
+			padding: 12px;
+			user-select: none;
+			position: relative;
+			font-weight: bold;
+/* 			display: flex; */
+		}
+
+
+		ul{
+			justify-content: space-around;
+		}
+		
+		ul li .cross{
+			position: absolute;
+			right: 0;
+			top: 5px;
+			width: 40px;
+			height: 40px;
+			font-size: 22px;
+			color: #555;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 50%;
+			cursor: pointer;
+			transition: .3s ease all;
+		}
+		ul li .cross:hover{
+			background: rgba(37, 43, 72, .5);
+			color: white;
+		}
+		li input{
+			position: absolute;
+			right: 10%;
+			width: 20px;
+			height: 20px;
+			margin-right: 1rem;
+			cursor: pointer;
+			transition: .3s ease all;
+		}
+		li input:hover{
+			transform: scale(1.2);
+		}
+		ul li.checked{
+			color: grey;
+			text-decoration-line: line-through;
+		}
+
+		#list_content{
+			height: 150px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+		/* width */
+	#list_content::-webkit-scrollbar {
+	  width: 10px;
+	  
+	}
+
+	/* Track */
+	#list_content::-webkit-scrollbar-track {
+	  background: rgba(0, 0, 0, 0.1);
+	  border-radius: 2rem;
+	}
+
+	/* Handle */
+	#list_content::-webkit-scrollbar-thumb {
+	  background: rgba(37, 43, 72,.8);
+	  border-radius: 2rem;
+	}
+
+	/* Handle on hover */
+	#list_content::-webkit-scrollbar-thumb:hover {
+	  background: rgba(0, 0, 0, .5);
+	  background: rgba(37, 43, 72, 1);
+	}
+
+	</style>
+	<title> TO DO LIST </title>
+</head>
+<body>
+
+	<div class="container">
+		<div class="todo">
+			<h2>TO-DO LIST <span class="icon"><i class="fas fa-tasks"></i></span></h2>
+			<div class="row">
+				<input type="text" id="todo-box" placeholder="Add task...">
+				<button onclick="addtask()">+</button>
+			</div>
+			<ul id="list_content">
+				<!-- <li>
+					<input type="checkbox">
+			Task 1</li> -->
+			</ul>
+		</div>
+	</div>
+
+
+	<script>
+		const inputBox = document.getElementById('todo-box');
+		const list_content = document.getElementById('list_content');
+		
+
+	function addtask(){
+		if(inputBox.value == ''){
+			alert("Task field is empty!!, Add task :)");
+		}
+		else{
+
+			let li = document.createElement('li');
+			li.innerHTML = '<input type="checkbox" class="check">'+inputBox.value;
+			list_content.appendChild(li);
+
+			let span = document.createElement('span');
+			span.innerHTML = '\u00d7';
+			span.classList.add('cross');
+			li.appendChild(span);
+		}
+		inputBox.value = '';
+	}
+
+	list_content.addEventListener("click", function(e){
+			if(e.target.className === 'check'){
+				e.target.parentElement.classList.toggle("checked");
+			}
+
+		else if(e.target.className === "cross"){
+			e.target.parentElement.remove();
+		}
+	});
+
+	
+
+	</script>
+
+</body>
+</html>
+
